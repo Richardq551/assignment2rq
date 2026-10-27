@@ -47,6 +47,12 @@ def cost_per_class(annual_cost, credits):
     return class_cost
 
 
+def cost_per_warhammer(annual_cost, credits, model_cost):
+    """Give back what one credit compares to Warhammer models"""
+    cost_credit = cost_per_credit(annual_cost, credits)
+    cost_model_per_cred = float(model_cost) / float(cost_credit)
+    return cost_model_per_cred
+
 # ---- PROGRAM ----
 
 def main():
@@ -54,6 +60,7 @@ def main():
     # Then ask for the credits this semester.
     annual_cost = input("How much is the cost for one year?")
     credits = input("How many credits are you enroled in?")
+    model_cost = input("What does the model you want cost?")
     while True:
         # Show your menu here.
         print("Welcome to the program! You are on the main menu")
@@ -62,6 +69,7 @@ def main():
         print("3 for Cost per Day")
         print("4 for Cost per Credit")
         print("5 for Cost per Class")
+        print("6 for Cost of Warhammer Models")
         print("Q to Quit")
 
         choice = input("Choose an option: ")
@@ -84,6 +92,10 @@ def main():
         elif(choice == '5'):
             class_1 = cost_per_class(annual_cost, credits)
             print(f"One class of CS1430 costs ${class_1:,.2f}")
+        elif(choice == '6'):
+            warhammer = cost_per_warhammer(annual_cost, credits, model_cost)
+            print(f"The ratio between your desired kit and one credit is {warhammer:,.2f}")
+
         
 
 
